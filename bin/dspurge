@@ -1,0 +1,6 @@
+#!/bin/sh
+
+find . -type f -name .DS_Store | while read -r f; do
+    echo "Removing \033[0;33m${f}\033[0m"
+    rm -f ${f}
+done

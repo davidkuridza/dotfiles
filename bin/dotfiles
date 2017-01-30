@@ -1,0 +1,179 @@
+#!/bin/sh
+
+set -e
+set -u
+
+####################################################################################################
+## functions
+
+help() {
+  cat << EOF
+Usage: `basename $0` [OPTIONS]
+
+    --help              Show this message
+    --all               Install dependencies, brew, brew cask and Golang
+                        packages, setup configuration
+    --[no-]brew         Provision brew packages
+    --[no-]brew-cask    Provision brew cask packages
+    --[no-]custom       Use custom provisioning (i.e. from ./custom)
+    --[no-]deps         Provision dependencies (brew, oh-my-zsh)
+    --[no-]dots         Provision shell and other configuration
+    --[no-]fzf          Provision command line fuzzy finder
+    --[no-]go           Provision Golang packages
+    --[no-]go           Provision operating system
+EOF
+}
+
+header() { #message
+    echo "\033[1;37m=> ${1}\033[0m"
+}
+
+symlink() { # source destination
+    src="${1}"
+    dst="${2}"
+    echo "Symlinking \033[0;33m${src}\033[0m to \033[0;33m${dst}\033[0m"
+    ln -sf "$(pwd)/${src}" "${dst}"
+}
+
+makedir() { # destination
+    dst="${1}"
+    echo "Creating \033[0;33m${dst}\033[0m"
+    mkdir -p "${dst}"
+}
+
+####################################################################################################
+## main
+
+cfg_brew=0
+cfg_brew_cask=0
+cfg_custom=0
+cfg_deps=0
+cfg_dots=0
+cfg_fzf=0
+cfg_go=0
+cfg_os=0
+
+test $# -eq 0 && help && exit 0
+
+for opt in "$@"; do
+    case ${opt} in
+        --help)
+            help; exit 0
+        ;;
+        --all)
+            cfg_brew=1
+            cfg_brew_cask=1
+            cfg_custom=1
+            cfg_deps=1
+            cfg_dots=1
+            cfg_fzf=1
+            cfg_go=1
+            cfg_os=1
+        ;;
+        --brew)         cfg_brew=1      ;;
+        --no-brew)      cfg_brew=0      ;;
+        --brew-cask)    cfg_brew_cask=1 ;;
+        --no-brew-cask) cfg_brew_cask=0 ;;
+        --custom)       cfg_custom=1    ;;
+        --no-custom)    cfg_custom=0    ;;
+        --deps)         cfg_deps=1      ;;
+        --no-deps)      cfg_deps=0      ;;
+        --dots)         cfg_dots=1      ;;
+        --no-dots)      cfg_dots=0      ;;
+        --fzf)          cfg_fzf=1       ;;
+        --no-fzf)       cfg_fzf=0       ;;
+        --go)           cfg_go=1        ;;
+        --no-go)        cfg_go=0        ;;
+        --os)           cfg_os=1        ;;
+        --no-os)        cfg_os=0        ;;
+        *)
+            echo "Unknown option: ${opt}\n"
+            help; exit 1
+        ;;
+    esac
+done
+
+cd "$(dirname "${0}")/.."
+
+# dependencies
+if [ ${cfg_deps} -eq 1 ]; then
+    header "Ensuring dependencies"
+    # ensure oh-my-zsh
+    if ! test -d ~/.oh-my-zsh; then
+        header "Installing oh-my-zsh"
+        sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+        header "Installation complete, restart the terminal"
+        exit 0
+    fi
+
+    # ensure brew
+    if ! test "$(which brew)"; then
+        header "Installing Homebrew"
+        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    fi
+fi
+
+# configuration
+if [ ${cfg_dots} -eq 1 ]; then
+    header "Preparing configuration"
+    find dots custom/dots -maxdepth 1 -name '.*' -not -name '.DS_Store' -not -name '.' 2>/dev/null | while read -r src; do
+        src=$(echo $src | sed 's/^.\///')
+        test -f "${src}" && target="${HOME}/$(basename "${src}")" || target="${HOME}"
+        symlink "${src}" "${target}"
+    done
+fi
+
+if [ ${cfg_brew} -eq 1 ]; then
+    # ensure brew packages
+    header "Installing Homebrew packages"
+    list=$(brew list --full-name -1)
+    find . custom -maxdepth 1 -type f -name Brewfile -exec cat {} \; | while read -r pkg; do
+        pkg_clean=$(echo ${pkg} | cut -d ' ' -f 1)
+        pkg_installed=$(echo ${list} | { grep -w -o "${pkg_clean}" | head -1 || true; })
+        if [[ ${pkg_installed} == ${pkg_clean} ]]; then
+            echo "Package \033[0;33m${pkg_clean}\033[0m already installed"
+        else
+            echo "Installing package \033[0;33m${pkg_clean}\033[0m"
+            brew install ${pkg} 2>/dev/null
+        fi
+    done
+fi
+
+if [ ${cfg_brew_cask} -eq 1 ]; then
+    header "Installing Homebrew Cask packages"
+    list=$(brew cask list)
+    find . custom -maxdepth 1 -type f -name Caskfile -exec cat {} \; | while read -r pkg; do
+        pkg_installed=$(echo ${list} | { grep -wo "${pkg}" || true; })
+        if [[ ${pkg_installed} == ${pkg} ]]; then
+            echo "Package \033[0;33m${pkg}\033[0m already installed"
+        else
+            echo "Installing package \033[0;33m${pkg}\033[0m"
+            brew cask install ${pkg} 2>/dev/null
+        fi
+    done
+fi
+
+if [ ${cfg_go} -eq 1 ]; then
+    # ensure go packages
+    header "Installing Go packages"
+    find . custom -maxdepth 1 -type f -name Gofile -exec cat {} \; | while read -r pkg; do
+        echo "Installing package \033[0;33m${pkg}\033[0m"
+        go get -u ${pkg}
+    done
+fi
+
+if [ ${cfg_fzf} -eq 1 ]; then
+    # fuzzy finder (fzf)
+    header "Installing fzf bindings"
+    /usr/local/opt/fzf/install --key-bindings --completion --no-update-rc
+fi
+
+# operating system
+if [ ${cfg_os} -eq 1 ]; then
+    ./macos.sh
+fi
+
+# custom provisioning
+if [ ${cfg_custom} -eq 1 ]; then
+    test -f ./custom/provision.sh && source ./custom/provision.sh
+fi

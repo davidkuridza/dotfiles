@@ -1,0 +1,4 @@
+#!/bin/sh
+
+curl -4 http://icanhazip.com
+curl -6 http://icanhazip.com
