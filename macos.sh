@@ -306,11 +306,17 @@ defaults write com.apple.mail DraftsViewerAttributes -dict-add "DisplayInThreade
 defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortedDescending" -string "yes"
 defaults write com.apple.mail DraftsViewerAttributes -dict-add "SortOrder" -string "received-date"
 
+# Show most recent message at the top
+defaults write com.apple.mail ConversationViewSortDescending -int 1
+
 # Disable inline attachments (just show the icons)
 defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 
 # Enable automatic spell checking
 defaults write com.apple.mail SpellCheckingBehavior -string "InlineSpellCheckingEnabled"
+
+# Do not load remote content in messages
+defaults write com.apple.mail-shared DisableURLLoading -int 1
 
 ###############################################################################
 # Spotlight                                                                   #
