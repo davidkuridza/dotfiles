@@ -13,20 +13,10 @@ header() { #message
 ####################################################################################################
 ## main
 
-# oh-my-zsh
-if ! test -d ~/.oh-my-zsh; then
-    header "Installing oh-my-zsh"
-    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-fi
+cd "$(dirname "${0}")"
 
-# homebrew
-if ! test "$(which brew)"; then
-    header "Installing Homebrew"
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-fi
-
-# main configuration
-./bin/dotfiles --dots
+# install dependencies and dotfiles
+./bin/dotfiles --deps --dots
 
 # and done :)
 header "Done."
