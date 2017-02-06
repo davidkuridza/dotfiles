@@ -170,7 +170,7 @@ fi
 
 # operating system
 if [ ${cfg_os} -eq 1 ]; then
-    ./macos.sh
+    source ./macos.sh
 fi
 
 # custom provisioning
