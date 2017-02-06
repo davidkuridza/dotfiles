@@ -81,7 +81,7 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 # Enable press-and-hold for keys
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool true
 
-# # Set a blazingly fast keyboard repeat rate
+# Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
@@ -171,7 +171,7 @@ defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 /usr/libexec/PlistBuddy -c "Set :FK_StandardViewSettings:IconViewSettings:gridSpacing 54" ~/Library/Preferences/com.apple.finder.plist || true
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:gridSpacing 54"    ~/Library/Preferences/com.apple.finder.plist
 
-# # Increase the size of icons on the desktop and in other icon views
+# Increase the size of icons on the desktop and in other icon views
 /usr/libexec/PlistBuddy -c "Set :StandardViewSettings:IconViewSettings:iconSize 64"    ~/Library/Preferences/com.apple.finder.plist
 
 # Use list view in all Finder windows by default
@@ -197,15 +197,15 @@ defaults write com.apple.dock mouse-over-hilite-stack -bool true
 # Disable dock magnifications
 defaults write com.apple.dock magnification -bool false
 
-# # Set the icon size of Dock items to 36 pixels
+# Set the icon size of Dock items to 36 pixels
 defaults write com.apple.dock tilesize -int 36
 
 # Do not minimize windows into their application’s icon
 defaults write com.apple.dock minimize-to-application -bool false
 
-# # Wipe all (default) app icons from the Dock
-# # This is only really useful when setting up a new Mac, or if you don’t use
-# # the Dock to launch apps.
+# Wipe all (default) app icons from the Dock
+# This is only really useful when setting up a new Mac, or if you don’t use
+# the Dock to launch apps.
 defaults write com.apple.dock persistent-apps -array
 
 # Speed up Mission Control animations
@@ -329,9 +329,9 @@ sudo mdutil -i on / > /dev/null
 # Rebuild the index from scratch
 sudo mdutil -E / > /dev/null
 
-# ###############################################################################
-# # iTerm 2                                                                     #
-# ###############################################################################
+###############################################################################
+# iTerm 2                                                                     #
+###############################################################################
 
 # Don't display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
