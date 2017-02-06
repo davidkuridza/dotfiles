@@ -20,7 +20,7 @@ Usage: `basename $0` [OPTIONS]
     --[no-]dots         Provision shell and other configuration
     --[no-]fzf          Provision command line fuzzy finder
     --[no-]go           Provision Golang packages
-    --[no-]go           Provision operating system
+    --[no-]os           Provision operating system
 EOF
 }
 
