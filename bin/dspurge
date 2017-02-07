@@ -1,6 +1,34 @@
 #!/bin/sh
 
+set -e
+set -u
+
+help() {
+  cat << EOF
+Usage: $(basename "$0") [OPTIONS]
+
+    -h, --help          Show this message
+    -n, --dry-run       Show which files will be removed
+EOF
+}
+
+dryrun=0
+
+for opt in "$@"; do
+    case ${opt} in
+        -h|--help)      help; exit 0    ;;
+        -n|--dry-run)   dryrun=1        ;;
+        *)
+            echo "Unknown option: ${opt}"
+            echo ""
+            help; exit 1
+        ;;
+    esac
+done
+
 find . -type f -name .DS_Store | while read -r f; do
     echo "Removing \033[0;33m${f}\033[0m"
-    rm -f ${f}
+    if [ ${dryrun} -eq 1 ]; then
+        rm -f "${f}"
+    fi
 done
