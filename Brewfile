@@ -12,6 +12,7 @@ gpg
 gpg-agent
 iproute2mac
 jq
+mas
 miller
 nmap
 pandoc
