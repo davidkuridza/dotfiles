@@ -50,7 +50,7 @@ configure() { # --name NAME --email EMAIL --key KEY
         git config --local --unset user.email || true
         git config --local --add user.email "${email}"
         if [[ -z ${key} ]]; then
-            key=$(gpg --list-key ${email} | grep ^pub | cut -c 13-20)
+            key=$(gpg --list-key ${email} | awk '/^pub/{getline; print $1}')
         fi
     fi
 
