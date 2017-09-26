@@ -1,0 +1,36 @@
+#!/bin/bash
+
+set -euo pipefail
+
+help() {
+  cat << EOF
+Usage: $(basename "$0") [OPTIONS] <port>
+
+    -h, --help          Show this message
+    -k, --kill          Terminate the process
+EOF
+}
+
+test $# -eq 0 && help && exit 1
+
+terminate=0
+port=0
+for opt in "$@"; do
+    case ${opt} in
+        -h|--help)      help; exit 0    ;;
+        -k|--kill)      terminate=1     ;;
+        *)              port=${opt}     ;;
+    esac
+done
+
+p=$(lsof -n -i4TCP:${port} | grep LISTEN || true)
+if [[ -n $p ]]; then
+    echo "$p"
+
+    if [[ $terminate -eq 1 ]]; then
+        pid=$(echo "$p" | awk '{print $2}')
+        echo -n "Terminating PID $pid ..."
+        kill "$pid"
+        echo " Done."
+    fi
+fi
