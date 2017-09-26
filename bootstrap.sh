@@ -15,6 +15,9 @@ header() { #message
 
 cd "$(dirname "${0}")"
 
+# install
+xcode-select --install || true
+
 # install dependencies and dotfiles
 ./bin/dotfiles --deps --dots
 
