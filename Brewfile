@@ -1,4 +1,3 @@
-ansible
 caddy
 coreutils
 fabric
@@ -21,12 +20,10 @@ homebrew/php/php71
 pinentry-mac
 python
 readline
-ruby
 shellcheck
 sqlite
 tig
 tree
 unrar
-vim
 watch
 wget
