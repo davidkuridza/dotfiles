@@ -16,7 +16,8 @@ miller
 nmap
 pandoc
 perl
-homebrew/php/php71
+php72
+php72-xdebug
 pinentry-mac
 python
 readline
