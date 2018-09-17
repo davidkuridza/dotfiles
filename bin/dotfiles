@@ -150,7 +150,8 @@ fi
 
 # operating system
 if [ ${cfg_os} -eq 1 ]; then
-    source ./macos.sh
+    header "MacOS provision is disabled temporarily"
+    # source ./macos.sh
 fi
 
 # custom provisioning

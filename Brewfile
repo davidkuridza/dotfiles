@@ -1,19 +1,18 @@
 caddy
 coreutils
+direnv
 findutils
 fzf
 git
 gnu-sed --with-default-names
 go
 govendor
-gpg
-gpg-agent
+gnupg
 iproute2mac
 jq
 nmap
 perl
-php72
-php72-xdebug
+php
 pinentry-mac
 python
 readline
