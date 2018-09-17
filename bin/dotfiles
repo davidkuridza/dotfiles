@@ -19,7 +19,6 @@ Usage: $(basename "$0") [OPTIONS]
     --[no-]brew         Provision brew packages
     --[no-]brew-cask    Provision brew cask packages
     --[no-]custom       Use custom provisioning (i.e. from ./custom)
-    --[no-]deps         Provision dependencies (brew, oh-my-zsh)
     --[no-]dots         Provision shell and other configuration
     --[no-]fzf          Provision command line fuzzy finder
     --[no-]go           Provision Golang packages
@@ -50,7 +49,6 @@ makedir() { # destination
 cfg_brew=0
 cfg_brew_cask=0
 cfg_custom=0
-cfg_deps=0
 cfg_dots=0
 cfg_fzf=0
 cfg_go=0
@@ -67,7 +65,6 @@ for opt in "$@"; do
             cfg_brew=1
             cfg_brew_cask=1
             cfg_custom=1
-            cfg_deps=1
             cfg_dots=1
             cfg_fzf=1
             cfg_go=1
@@ -79,8 +76,6 @@ for opt in "$@"; do
         --no-brew-cask) cfg_brew_cask=0 ;;
         --custom)       cfg_custom=1    ;;
         --no-custom)    cfg_custom=0    ;;
-        --deps)         cfg_deps=1      ;;
-        --no-deps)      cfg_deps=0      ;;
         --dots)         cfg_dots=1      ;;
         --no-dots)      cfg_dots=0      ;;
         --fzf)          cfg_fzf=1       ;;
@@ -97,24 +92,6 @@ for opt in "$@"; do
 done
 
 cd "$(dirname "${0}")/.."
-
-# dependencies
-if [ ${cfg_deps} -eq 1 ]; then
-    header "Ensuring dependencies"
-    # ensure oh-my-zsh
-    if ! test -d ~/.oh-my-zsh; then
-        header "Installing oh-my-zsh"
-        sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-        header "Installation complete, restart the terminal"
-        exit 0
-    fi
-
-    # ensure brew
-    if ! test "$(which brew)"; then
-        header "Installing Homebrew"
-        /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    fi
-fi
 
 # configuration
 if [ ${cfg_dots} -eq 1 ]; then
