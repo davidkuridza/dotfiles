@@ -13,11 +13,6 @@ Usage: $(basename "$0") [OPTIONS]
     $(basename "$0") --all --no-os
     $(basename "$0") --brew --brew-cask
 
-Mac App Store requires Apple ID, it can be passed as:
-
-    MAS_UID=my-apple-id $(basename "$0") --all
-    MAS_UID=my-apple-id $(basename "$0") --mas --dots
-
     --help              Show this message
     --all               Install dependencies, brew, brew cask and Golang
                         packages, setup configuration
@@ -28,7 +23,6 @@ Mac App Store requires Apple ID, it can be passed as:
     --[no-]dots         Provision shell and other configuration
     --[no-]fzf          Provision command line fuzzy finder
     --[no-]go           Provision Golang packages
-    --[no-]mas <id>     Provision Mas packages
     --[no-]os           Provision operating system
 EOF
 }
@@ -60,7 +54,6 @@ cfg_deps=0
 cfg_dots=0
 cfg_fzf=0
 cfg_go=0
-cfg_mas=0
 cfg_os=0
 
 test $# -eq 0 && help && exit 0
@@ -78,7 +71,6 @@ for opt in "$@"; do
             cfg_dots=1
             cfg_fzf=1
             cfg_go=1
-            cfg_mas=1
             cfg_os=1
         ;;
         --brew)         cfg_brew=1      ;;
@@ -95,8 +87,6 @@ for opt in "$@"; do
         --no-fzf)       cfg_fzf=0       ;;
         --go)           cfg_go=1        ;;
         --no-go)        cfg_go=0        ;;
-        --mas)          cfg_mas=1       ;;
-        --no-mas)       cfg_mas=0       ;;
         --os)           cfg_os=1        ;;
         --no-os)        cfg_os=0        ;;
         *)
@@ -105,9 +95,6 @@ for opt in "$@"; do
         ;;
     esac
 done
-
-# ensure MAS_UID is set
-test ${cfg_mas} -eq 1 && test -z ${MAS_UID:-} && help && exit 1
 
 cd "$(dirname "${0}")/.."
 
@@ -166,14 +153,6 @@ if [ ${cfg_brew_cask} -eq 1 ]; then
             echo "Installing package \033[0;33m${pkg}\033[0m"
             brew cask install ${pkg} 2>/dev/null
         fi
-    done
-fi
-
-if [ ${cfg_mas} -eq 1 ]; then
-    header "Install Mas packages"
-    test "$(mas account)" == "${MAS_UID}" || mas signin "${MAS_UID}"
-    find . custom -maxdepth 1 -type f -name Masfile -exec cat {} \; 2>/dev/null | while read -r pkg; do
-        mas install "$(echo ${pkg} | cut -d ' ' -f 1)"
     done
 fi
 

@@ -9,7 +9,7 @@ export LESS="-erX"
 export EDITOR="vim"
 
 # Golang defaults
-export GOPATH="/Users/david/go"
+export GOPATH="${HOME}/go"
 export GOBIN="${GOPATH}/bin"
 
 # default path

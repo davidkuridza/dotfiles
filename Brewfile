@@ -1,6 +1,5 @@
 caddy
 coreutils
-fabric
 findutils
 fzf
 git
@@ -11,10 +10,7 @@ gpg
 gpg-agent
 iproute2mac
 jq
-mas
-miller
 nmap
-pandoc
 perl
 php72
 php72-xdebug
