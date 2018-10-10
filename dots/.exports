@@ -14,3 +14,7 @@ export GOBIN="${GOPATH}/bin"
 
 # default path
 export PATH="${HOME}/.dotfiles/bin:${HOME}/.dotfiles/custom/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${GOBIN}"
+
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_INSECURE_REDIRECT=1
+export HOMEBREW_CASK_OPTS=--require-sha
