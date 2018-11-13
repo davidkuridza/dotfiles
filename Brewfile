@@ -8,6 +8,7 @@ gnu-sed --with-default-names
 go
 govendor
 gnupg
+httpie
 iproute2mac
 jq
 nmap
@@ -21,5 +22,6 @@ sqlite
 tig
 tree
 unrar
+vegeta
 watch
 wget
