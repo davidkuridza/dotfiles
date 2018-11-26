@@ -166,12 +166,6 @@ defaults write com.apple.mail SpellCheckingBehavior -string "InlineSpellChecking
 # Do not load remote content in messages
 defaults write com.apple.mail DisableInlineAttachmentViewing -int 1
 
-# Disable Spotlight indexing for any volume that gets mounted and has not yet
-# been indexed before.
-# Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array \
-    "/Volumes"
-
 # Load new settings before rebuilding the index
 sudo killall mds > /dev/null 2>&1
 # Make sure indexing is enabled for the main volume
