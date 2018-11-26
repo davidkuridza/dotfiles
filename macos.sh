@@ -164,7 +164,7 @@ defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 defaults write com.apple.mail SpellCheckingBehavior -string "InlineSpellCheckingEnabled"
 
 # Do not load remote content in messages
-defaults write com.apple.mail-shared DisableURLLoading -int 1
+defaults write com.apple.mail DisableInlineAttachmentViewing -int 1
 
 # Disable Spotlight indexing for any volume that gets mounted and has not yet
 # been indexed before.
