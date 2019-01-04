@@ -35,7 +35,6 @@ dotfiles --all
 ├── Brewfile
 ├── Caskfile
 ├── Gofile
-├── Masfile
 ├── bootstrap.sh
 └── macos.sh
 ```
@@ -59,7 +58,6 @@ custom
 ├── Brewfile
 ├── Caskfile
 ├── Gofile
-├── Masfile
 └── provision.sh
 ```
 
@@ -69,9 +67,9 @@ Tailored provisioning can be done in `provision.sh`, the rest of the files and d
 
 All the files and directories starting with a `.` are symlinked to `$HOME`.
 
-### Brewfile, Caskfile, Gofile, Masfile
+### Brewfile, Caskfile, Gofile
 
-Each file contains a list of packages to be installed with `brew`, `brew cask`, `go get` and `mas` respectively.
+Each file contains a list of packages to be installed with `brew install`, `brew cask install` and `go get` respectively.
 
 ## Inspiration
 
