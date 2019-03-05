@@ -80,3 +80,7 @@ Each file contains a list of packages to be installed with `brew install`, `brew
 ## License
 
 Licensed under the [MIT license](LICENSE).
+
+## Fonts
+
+* [Hack](https://sourcefoundry.org/hack/)
