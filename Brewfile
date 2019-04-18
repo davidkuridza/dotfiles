@@ -4,9 +4,8 @@ direnv
 findutils
 fzf
 git
-gnu-sed --with-default-names
+gnu-sed
 go
-govendor
 gnupg
 httpie
 iproute2mac
