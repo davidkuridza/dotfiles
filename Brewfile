@@ -6,13 +6,13 @@ fzf
 git
 gnu-sed
 go
+golangci/tap/golangci-lint
 gnupg
 httpie
 iproute2mac
 jq
 nmap
 perl
-php
 pinentry-mac
 python
 readline
@@ -21,6 +21,5 @@ sqlite
 tig
 tree
 unrar
-vegeta
 watch
 wget
