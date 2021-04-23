@@ -42,3 +42,6 @@ pushf  = push --force-with-lease
 
 [commit]
 gpgsign = true
+
+[tag]
+forceSignAnnotated = true
