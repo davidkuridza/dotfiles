@@ -121,14 +121,14 @@ fi
 
 if [ ${cfg_brew_cask} -eq 1 ]; then
     header "Installing Homebrew Cask packages"
-    list=$(brew cask list)
+    list=$(brew list --cask)
     find . custom -maxdepth 1 -type f -name Caskfile -exec cat {} \; 2>/dev/null | while read -r pkg; do
         pkg_installed=$(echo ${list} | { grep -wo "${pkg}" || true; })
         if [[ ${pkg_installed} == ${pkg} ]]; then
             echo "Package \033[0;33m${pkg}\033[0m already installed"
         else
             echo "Installing package \033[0;33m${pkg}\033[0m"
-            brew cask install ${pkg} 2>/dev/null
+            brew install --cask ${pkg} 2>/dev/null
         fi
     done
 fi
