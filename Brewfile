@@ -7,7 +7,9 @@ gnu-sed
 gnupg
 httpie
 iproute2mac
+jq
 nmap
+pinentry-mac
 perl
 python
 readline
