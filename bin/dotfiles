@@ -104,33 +104,13 @@ if [ ${cfg_dots} -eq 1 ]; then
 fi
 
 if [ ${cfg_brew} -eq 1 ]; then
-    # ensure brew packages
     header "Installing Homebrew packages"
-    list=$(brew list --full-name -1)
-    find . custom -maxdepth 1 -type f -name Brewfile -exec cat {} \; 2>/dev/null | while read -r pkg; do
-        pkg_clean=$(echo ${pkg} | cut -d ' ' -f 1)
-        pkg_installed=$(echo ${list} | { grep -w -o "${pkg_clean}" | head -1 || true; })
-        if [[ ${pkg_installed} == ${pkg_clean} ]]; then
-            echo "Package \033[0;33m${pkg_clean}\033[0m already installed"
-        else
-            echo "Installing package \033[0;33m${pkg_clean}\033[0m"
-            brew install ${pkg} 2>/dev/null
-        fi
-    done
+    find . custom -maxdepth 1 -type f -name Brewfile -exec cat {} \; | xargs brew install
 fi
 
 if [ ${cfg_brew_cask} -eq 1 ]; then
     header "Installing Homebrew Cask packages"
-    list=$(brew list --cask)
-    find . custom -maxdepth 1 -type f -name Caskfile -exec cat {} \; 2>/dev/null | while read -r pkg; do
-        pkg_installed=$(echo ${list} | { grep -wo "${pkg}" || true; })
-        if [[ ${pkg_installed} == ${pkg} ]]; then
-            echo "Package \033[0;33m${pkg}\033[0m already installed"
-        else
-            echo "Installing package \033[0;33m${pkg}\033[0m"
-            brew install --cask ${pkg} 2>/dev/null
-        fi
-    done
+    find . custom -maxdepth 1 -type f -name Caskfile -exec cat {} \; | xargs brew install --cask
 fi
 
 if [ ${cfg_go} -eq 1 ]; then
