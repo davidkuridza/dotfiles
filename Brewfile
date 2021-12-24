@@ -5,6 +5,7 @@ fzf
 git
 gnu-sed
 gnupg
+go
 httpie
 iproute2mac
 jq
