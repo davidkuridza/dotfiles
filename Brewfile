@@ -8,6 +8,7 @@ gnupg
 httpie
 iproute2mac
 jq
+neovim
 nmap
 pinentry-mac
 perl

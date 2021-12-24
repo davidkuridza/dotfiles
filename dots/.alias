@@ -1,1 +1,3 @@
 alias reload="exec $SHELL -i"
+alias vi="nvim"
+alias vim="nvim"
