@@ -45,3 +45,6 @@ gpgsign = true
 
 [tag]
 forceSignAnnotated = true
+
+[includeIf "gitdir:~/work/"]
+path = ~/.dotfiles/custom/gitconfig
