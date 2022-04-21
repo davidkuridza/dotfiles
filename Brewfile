@@ -1,4 +1,5 @@
 coreutils
+difftastic
 direnv
 findutils
 fzf

@@ -46,5 +46,8 @@ gpgsign = true
 [tag]
 forceSignAnnotated = true
 
+[diff]
+external = difft
+
 [includeIf "gitdir:~/work/"]
 path = ~/.dotfiles/custom/gitconfig
