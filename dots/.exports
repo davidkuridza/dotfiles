@@ -12,15 +12,21 @@ export EDITOR="vim"
 export GOPATH="${HOME}/go"
 export GOBIN="${GOPATH}/bin"
 
+# default path
+export PATH="${HOME}/.dotfiles/bin:${HOME}/.dotfiles/custom/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:${GOBIN}"
+
 # homebrew
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_INSECURE_REDIRECT=1
 export HOMEBREW_CASK_OPTS=--require-sha
-export HOMEBREW_PREFIX="/opt/homebrew";
-export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
-export HOMEBREW_REPOSITORY="/opt/homebrew";
 
-# default paths
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${HOME}/.dotfiles/bin:${HOME}/.dotfiles/custom/bin:${PATH+:$PATH}:${GOBIN}";
-export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
-export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+if [[ $(uname -m) == 'arm64' ]]; then
+	export HOMEBREW_PREFIX="/opt/homebrew";
+	export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+	export HOMEBREW_REPOSITORY="/opt/homebrew";
+
+	# default paths
+	export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${HOME}/.dotfiles/bin:${HOME}/.dotfiles/custom/bin:${PATH+:$PATH}:${GOBIN}";
+	export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+	export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+fi

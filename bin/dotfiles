@@ -111,7 +111,7 @@ fi
 if [ ${cfg_fzf} -eq 1 ]; then
     # fuzzy finder (fzf)
     header "Installing fzf bindings"
-    /opt/homebrew/opt/fzf/install --key-bindings --completion --no-update-rc
+    $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
 fi
 
 # operating system
