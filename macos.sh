@@ -143,6 +143,12 @@ defaults write com.apple.dock minimize-to-application -bool false
 # the Dock to launch apps.
 defaults write com.apple.dock persistent-apps -array
 
+# Do not show recent applications in the Dock.
+defaults write com.apple.dock show-recents -bool FALSE
+
+# Restart the Dock to apply the above settings.
+killall Dock
+
 # Copy email addresses as `foo@example.com` instead of `Foo Bar <foo@example.com>` in Mail.app
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
