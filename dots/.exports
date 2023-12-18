@@ -30,3 +30,6 @@ if [[ $(uname -m) == 'arm64' ]]; then
 	export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
 	export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 fi
+
+# zsh theme: override color
+RPROMPT="%F{green}${SSH_TTY:+%n@%m}%f"
