@@ -13,7 +13,7 @@ export GOPATH="${HOME}/go"
 export GOBIN="${GOPATH}/bin"
 
 # default path
-export PATH="${HOME}/.dotfiles/bin:${HOME}/.dotfiles/custom/bin:${PATH+:$PATH}:${GOBIN}"
+export PATH="${HOME}/.nix-flake/bin:${HOME}/.dotfiles/bin:${HOME}/.dotfiles/custom/bin:${PATH+:$PATH}:${GOBIN}"
 
 # homebrew
 export HOMEBREW_NO_ANALYTICS=1
