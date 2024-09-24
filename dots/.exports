@@ -20,17 +20,14 @@ export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_INSECURE_REDIRECT=1
 export HOMEBREW_CASK_OPTS=--require-sha
+export HOMEBREW_PREFIX="/opt/homebrew";
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+export HOMEBREW_REPOSITORY="/opt/homebrew";
 
-if [[ $(uname -m) == 'arm64' ]]; then
-	export HOMEBREW_PREFIX="/opt/homebrew";
-	export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
-	export HOMEBREW_REPOSITORY="/opt/homebrew";
-
-	# default paths
-	export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH+:$PATH}";
-	export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
-	export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
-fi
+# add homebrew to path
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH+:$PATH}";
+export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 
 # zsh theme: override color
 RPROMPT="%F{green}${SSH_TTY:+%n@%m}%f"
