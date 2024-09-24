@@ -100,18 +100,18 @@ fi
 
 if [ ${cfg_brew} -eq 1 ]; then
     header "Installing Homebrew packages"
-    find . custom -maxdepth 1 -type f -name Brewfile -exec cat {} \; | xargs brew install
+    find . custom -maxdepth 1 -type f -name Brewfile -exec cat {} \; | xargs /opt/homebrew/bin/brew install
 fi
 
 if [ ${cfg_brew_cask} -eq 1 ]; then
     header "Installing Homebrew Cask packages"
-    find . custom -maxdepth 1 -type f -name Caskfile -exec cat {} \; | xargs brew install --cask
+    find . custom -maxdepth 1 -type f -name Caskfile -exec cat {} \; | xargs /opt/homebrew/bin/brew install --cask
 fi
 
 if [ ${cfg_fzf} -eq 1 ]; then
     # fuzzy finder (fzf)
     header "Installing fzf bindings"
-    $(brew --prefix)/opt/fzf/install --key-bindings --completion --no-update-rc
+    /opt/homebrew/opt/fzf/install --key-bindings --completion --no-update-rc
 fi
 
 # operating system
