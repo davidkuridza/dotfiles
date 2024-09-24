@@ -187,7 +187,7 @@ sudo rm -rf  \
         /Library/Application\ Support/GarageBand \
         /Library/Application\ Support/Logic \
         /Library/Audio/Apple\ Loops \
-        ${HOME}/Music/GarageBand
+        "${HOME}/Music/GarageBand"
 
 ###############################################################################
 # Fonts                                                                       #
