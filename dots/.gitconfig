@@ -23,6 +23,9 @@ default = nothing
 [branch]
 autosetupmerge = always
 
+[init]
+defaultBranch  = main
+
 [alias]
 db     = log --oneline --no-merges
 dc     = diff --cached
