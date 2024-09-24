@@ -10,6 +10,7 @@ go
 httpie
 iproute2mac
 jq
+mise
 neovim
 nmap
 pinentry-mac
