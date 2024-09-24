@@ -1,3 +1,4 @@
 alias reload="exec $SHELL -i"
 alias vi="nvim"
 alias vim="nvim"
+alias git-delete-merged="git branch --merged | egrep -v \"(^\*|master|main)\" | xargs git branch -d"
