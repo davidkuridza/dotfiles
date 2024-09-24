@@ -29,3 +29,6 @@ eval "$(direnv hook zsh)"
 
 # mise-on-place
 eval "$(mise activate zsh)"
+
+# taskfile
+eval "$(task --completion zsh)"

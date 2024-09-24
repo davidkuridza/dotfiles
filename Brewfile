@@ -7,6 +7,7 @@ git
 gnu-sed
 gnupg
 go
+go-task
 httpie
 iproute2mac
 jq
