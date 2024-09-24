@@ -54,3 +54,6 @@ external = difft
 
 [includeIf "gitdir:~/work/"]
 path = ~/.dotfiles/custom/gitconfig
+
+[gpg]
+program = /opt/homebrew/bin/gpg
