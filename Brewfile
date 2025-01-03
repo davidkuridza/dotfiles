@@ -1,24 +1,33 @@
-coreutils
-difftastic
-direnv
-findutils
-fzf
-git
-gnu-sed
-gnupg
-go
-go-task
-httpie
-iproute2mac
-jq
-mise
-neovim
-nmap
-pinentry-mac
-perl
-python
-readline
-tig
-tree
-watch
-wget
+tap "homebrew/bundle"
+
+brew "coreutils"
+brew "difftastic"
+brew "direnv"
+brew "findutils"
+brew "fzf"
+brew "git"
+brew "gnu-sed"
+brew "gnupg"
+brew "go"
+brew "go-task"
+brew "httpie"
+brew "iproute2mac"
+brew "jq"
+brew "mise"
+brew "neovim"
+brew "nmap"
+brew "perl"
+brew "pinentry-mac"
+brew "tig"
+brew "tree"
+brew "watch"
+brew "wget"
+
+cask "appcleaner"
+cask "beekeeper-studio"
+cask "ghostty"
+cask "iterm2"
+cask "keepingyouawake"
+cask "obsidian"
+cask "orbstack"
+cask "rectangle"

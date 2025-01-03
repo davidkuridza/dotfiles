@@ -56,10 +56,7 @@ done
 
 # homebrew
 header "Installing Homebrew packages"
-find . custom -maxdepth 1 -type f -name Brewfile -exec cat {} \; | xargs /opt/homebrew/bin/brew install
-
-header "Installing Homebrew Cask packages"
-find . custom -maxdepth 1 -type f -name Caskfile -exec cat {} \; | xargs /opt/homebrew/bin/brew install --cask
+brew bundle install
 
 # fzf
 header "Installing fzf bindings"

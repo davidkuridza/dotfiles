@@ -33,7 +33,6 @@ git clone https://github.com/davidkuridza/dotfiles.git ~/.dotfiles
 ├── dots
 │   └── ... <-- actual dotfiles
 ├── Brewfile
-├── Caskfile
 ├── bootstrap.sh
 └── macos.sh
 ```
@@ -56,7 +55,6 @@ custom
 │   ├── .exports.local
 │   └── ... <-- actual dotfiles
 ├── Brewfile
-├── Caskfile
 └── provision.sh
 ```
 
@@ -66,9 +64,9 @@ Tailored provisioning can be done in `provision.sh`, the rest of the files and d
 
 All the files and directories starting with a `.` are symlinked to `$HOME`.
 
-### Brewfile, Caskfile
+### Brewfile
 
-Each file contains a list of packages to be installed with `brew install` and `brew cask --install` respectively.
+`Brewfile` is a list of packages to be installed with `brew bundle install`.
 
 ## Inspiration
 
