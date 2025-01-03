@@ -14,6 +14,7 @@ symlink() { # source destination
     src="${1}"
     dst="${2}"
     echo "Symlinking \033[0;33m${src}\033[0m to \033[0;33m${dst}\033[0m"
+    mkdir -p "$(dirname "${dst}")"
     ln -sf "$(pwd)/${src}" "${dst}"
 }
 
@@ -51,6 +52,11 @@ header "Preparing configuration"
 find dots custom/dots -maxdepth 1 -name '.*' -not -name '.DS_Store' -not -name '.' 2>/dev/null | while read -r src; do
     src=$(echo $src | sed 's/^.\///')
     test -f "${src}" && target="${HOME}/$(basename "${src}")" || target="${HOME}"
+    symlink "${src}" "${target}"
+done
+
+find config -type d -mindepth 1 -maxdepth 1 2>/dev/null | while read -r src; do
+    test -d "${src}" && target="${HOME}/.config/$(basename "${src}")"
     symlink "${src}" "${target}"
 done
 
