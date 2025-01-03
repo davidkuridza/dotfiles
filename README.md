@@ -6,7 +6,8 @@ HereBe my dotfiles.
 
 ### Word of advice
 
-If you are not me, you may want to reconsider installing this repository directly. Many settings are specific to my environment, at least review them before applying them anywhere.
+If you are not me, you may want to reconsider installing this repository directly.
+Many settings are specific to my environment, at least review them before applying them anywhere.
 
 ### Actual installation (if you are me)
 
@@ -15,7 +16,6 @@ Simply clone the repository to your favourite location, for example:
 ```shell
 git clone https://github.com/davidkuridza/dotfiles.git ~/.dotfiles
 ~/.dotfiles/bootstrap.sh
-dotfiles --all
 ```
 
 ## How does it work?
@@ -44,7 +44,8 @@ dotfiles --all
 
 ### custom
 
-All the sensitive data can be added to `custom` directory. For example, you can use a private VCS cloned to `custom` containing dotfiles with secrets (e.g. tokens, password etc) and other things which should not be exposed to the public.
+All the sensitive data can be added to `custom` directory.
+For example, you can use a private VCS cloned to `custom` containing dotfiles with secrets (e.g. tokens, password etc) and other things which should not be exposed to the public.
 
 ```
 custom
