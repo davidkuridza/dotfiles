@@ -1,0 +1,15 @@
+theme = Snazzy
+macos-titlebar-proxy-icon = hidden
+macos-titlebar-style=transparent
+
+adjust-cell-height = 10%
+mouse-hide-while-typing = true
+window-save-state = always
+copy-on-select = clipboard
+bold-is-bright = true
+
+keybind = super+left=previous_tab
+keybind = super+right=next_tab
+keybind = global:super+\=toggle_quick_terminal
+keybind = super+r=reload_config
+keybind = super+x=close_surface
