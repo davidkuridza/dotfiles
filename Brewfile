@@ -22,6 +22,7 @@ brew "tig"
 brew "tree"
 brew "watch"
 brew "wget"
+brew "zsh-autosuggestions"
 
 cask "appcleaner"
 cask "beekeeper-studio"
